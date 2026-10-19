@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: terra-tour-backend
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATA_DIR
+        value: /var/data
+      - key: FRONTEND_ORIGIN
+        sync: false
+    disk:
+      name: terra-tour-articles
+      mountPath: /var/data
+      sizeGB: 1
